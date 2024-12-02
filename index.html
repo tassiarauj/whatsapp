@@ -53,7 +53,7 @@ function determineSource() {
     
     // Prioriza o parâmetro src, se presente
     if (srcParam) {
-        return srcParam.charAt(0).toUpperCase() + srcParam.slice(1).toLowerCase();
+        return srcParam;
     }
 
     // Analisa o referrer caso o parâmetro src não esteja presente
@@ -82,7 +82,7 @@ function getWhatsAppLink(phoneNumbers, source, whatsapp, greeting) {
 
     // Gera a mensagem com a saudação
     let message;
-    if (source === 'Facebook' || source === 'Instagram' || source === 'Telegram') {
+    if (source) {
         message = `Oii Tassi, Vim do ${source}${greeting}`;
     } else {
         message = `Oii Tassi${greeting}`;
