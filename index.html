@@ -46,14 +46,23 @@
 }
 
 
-        // Função para determinar a origem do usuário
-        function determineSource() {
-            const referrer = document.referrer.toLowerCase();
-            if (referrer.includes('facebook.com')) return 'Facebook';
-            if (referrer.includes('instagram.com')) return 'Instagram';
-            if (referrer.includes('telegram.org')) return 'Telegram';
-            return 'seu site';
-        }
+      // Função para determinar a origem do usuário
+function determineSource() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const srcParam = urlParams.get('src');
+    
+    // Prioriza o parâmetro src, se presente
+    if (srcParam) {
+        return srcParam.charAt(0).toUpperCase() + srcParam.slice(1).toLowerCase();
+    }
+
+    // Analisa o referrer caso o parâmetro src não esteja presente
+    const referrer = document.referrer.toLowerCase();
+    if (referrer.includes('facebook.com')) return 'Facebook';
+    if (referrer.includes('instagram.com')) return 'Instagram';
+    if (referrer.includes('telegram.org')) return 'Telegram';
+    return 'seu site';
+}
 
         // Função para obter a saudação com base no horário local do usuário
         function getGreeting() {
